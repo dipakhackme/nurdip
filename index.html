@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dipak 💍 Nurjahan</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<!-- INTRO -->
+<div id="intro">
+  <span class="intro-ring">💍</span>
+  <div class="intro-title">Meri Jaan...</div>
+  <p class="intro-sub">Aapka Dipak kuch kehna chahta hai</p>
+  <button class="intro-btn" onclick="startProposal()">💖 Kholo Mera Dil 💖</button>
+</div>
+
+<!-- MAIN CARD -->
+<div class="card" id="mainCard">
+
+  <span class="ring-glow">💍</span>
+
+  <div class="names-banner">
+    <span class="name-dipak">Dipak</span>
+    <span class="heart-between">❤️</span>
+    <span class="name-nurjahan">Nurjahan</span>
+  </div>
+  <p class="subtitle">✨ Sirf Aapke Liye ✨</p>
+
+  <div class="couple-name">NurDip 💕</div>
+
+  <!-- Photos -->
+  <div class="frames-row">
+    <div class="frame-wrap">
+      <div class="frame">
+        <div class="frame-inner">
+          <img src="dipak.jpg" alt="Dipak" onerror="this.parentNode.innerHTML='🧑'">
+        </div>
+      </div>
+      <span class="frame-label label-dipak">Dipak</span>
+    </div>
+    <div class="frame-connector">💞</div>
+    <div class="frame-wrap">
+      <div class="frame">
+        <div class="frame-inner">
+          <img src="nurjahan.jpg" alt="Nurjahan" onerror="this.parentNode.innerHTML='👩'">
+        </div>
+      </div>
+      <span class="frame-label label-nurjahan">Nurjahan</span>
+    </div>
+  </div>
+
+  <!-- Shayari -->
+  <div class="shayari">
+    <span class="shayari-line">"Doori ne jism alag kiye hain,</span>
+    <span class="shayari-line">par dil toh aapke paas hi rehta hai..." 🌙</span>
+    <p class="shayari-by">— Aapka Dipak, door se bhi sirf aapka</p>
+  </div>
+
+  <!-- Message -->
+  <div class="message">
+    Meri pyaari <span class="hl2">Wife Ji</span>, 🌸<br><br>
+    Aap bahut door hain — lekin har subah aankhein khulti hain<br>
+    toh sabse pehla khayal aapka hi aata hai. 🌅<br><br>
+    Woh din yaad aate hain jab hum mile the —<br>
+    woh lamhe dil mein aise baste hain<br>
+    jaise koi khazana ho jo kabhi khatam na ho. 💛<br><br>
+    Yeh doori bahut takleef deti hai, Jaan.<br>
+    Par is doori ne ek baat sabit kar di —<br>
+    <strong class="proposal-line">"Aapke bina zindagi adhuri hai, Wife Ji." 💕</strong><br><br>
+    Isliye aaj main, <span class="hl">Dipak</span>, door se hi sahi —<br>
+    ghutne tek ke pooch raha hoon... 🧎
+  </div>
+
+  <!-- 6 Dil ki Baatein -->
+  <p class="reasons-title">💌 Door Hoke Bhi — Dil ki 6 Sachchi Baatein</p>
+  <div class="reasons">
+    <div class="rc"><span class="ic">🌅</span>"Har subah aapki yaad se shuru hoti hai — aur raat aapke sapne mein khatam."</div>
+    <div class="rc"><span class="ic">🌙</span>"Raat ko aasman dekhta hoon — sochta hoon aap bhi yahi chand dekh rahi hongi."</div>
+    <div class="rc"><span class="ic">💧</span>"Yeh doori dard deti hai — par yahi dard bata deta hai kitna pyaar hai aapse."</div>
+    <div class="rc"><span class="ic">♾️</span>"Jab milenge — phir kabhi door nahi jaane dunga, yeh waada hai mera."</div>
+  </div>
+
+  <!-- Question -->
+  <div class="question">
+    Wife Ji Nurjahan... 🌹<br>Kya Aap Mujhse Shaadi Karogi? 💍
+  </div>
+
+  <div class="buttons">
+    <button class="btn-yes" onclick="sayYes()">💖 Haan! Bilkul Haan! 💖</button>
+    <button class="btn-no" id="noBtn" onmouseover="runAway()" ontouchstart="runAway()">Nahi 🙈</button>
+  </div>
+
+  <p class="footer-text">— Sirf Aapka, Dipak ❤️ —</p>
+</div>
+
+<!-- YES SCREEN -->
+<div id="yes-screen">
+  <canvas id="yesCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+  <div class="yes-content">
+    <span class="yes-ring">💍</span>
+    <h2>Meri Wife Ji Ne Haan Keh Diya! 🎉</h2>
+    <div class="yes-names">Dipak 💍 Nurjahan</div>
+
+    <div class="yes-promise">
+      <span class="promise-title">Dipak ka Waada 🤝</span>
+      Aapki har khushi meri zimmedaari hogi. 💛<br>
+      Aapka har aansu mera dard hoga. 💧<br>
+      Har mod par — hamesha aapke saath. ♾️
+    </div>
+
+    <p class="yes-quote">"Meri Wife Ji Nurjahan — meri jaan, mera ghar, mera sab kuch." 💛</p>
+
+    <button class="btn-whatsapp" onclick="sendWhatsApp()">
+      📱 Dipak ko Batao — Haan Kar Diya! 💍
+    </button>
+    <p class="wa-hint">WhatsApp pe message jaayega 💚</p>
+  </div>
+</div>
+
+<script>
+// Background floating emojis
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const emojis = ['❤️','💕','💖','🌸','✨','💫','🌹','💗'];
+const particles = Array.from({length:50}, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  emoji: emojis[Math.floor(Math.random()*emojis.length)],
+  size: 12 + Math.random()*14,
+  vy: 0.3 + Math.random()*0.6,
+  vx: (Math.random()-0.5)*0.3,
+  opacity: 0.25 + Math.random()*0.45,
+  rot: Math.random()*360,
+  rs: (Math.random()-0.5)*1.2
+}));
+
+// Photo rain drops
+const photoImgs = [];
+const dipakImg = new Image();
+const nurjahanImg = new Image();
+dipakImg.src = 'dipak.jpg';
+nurjahanImg.src = 'nurjahan.jpg';
+
+const photoDrops = Array.from({length: 18}, (_, i) => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  img: i % 2 === 0 ? dipakImg : nurjahanImg,
+  size: 45 + Math.random() * 30,
+  vy: 0.8 + Math.random() * 1.2,
+  vx: (Math.random() - 0.5) * 0.5,
+  opacity: 0.18 + Math.random() * 0.22,
+  rot: (Math.random() - 0.5) * 30,
+  rs: (Math.random() - 0.5) * 0.4
+}));
+
+(function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Draw photo rain
+  photoDrops.forEach(p => {
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.translate(p.x + p.size/2, p.y + p.size/2);
+    ctx.rotate(p.rot * Math.PI / 180);
+    ctx.beginPath();
+    ctx.arc(0, 0, p.size/2, 0, Math.PI*2);
+    ctx.clip();
+    ctx.drawImage(p.img, -p.size/2, -p.size/2, p.size, p.size);
+    ctx.restore();
+    p.y += p.vy; p.x += p.vx; p.rot += p.rs;
+    if(p.y > canvas.height + p.size){ p.y = -p.size; p.x = Math.random()*canvas.width; }
+  });
+
+  // Draw emoji particles
+  particles.forEach(p => {
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.font = p.size+'px serif';
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillText(p.emoji, -p.size/2, p.size/2);
+    ctx.restore();
+    p.y -= p.vy; p.x += p.vx; p.rot += p.rs;
+    if(p.y < -30){ p.y = canvas.height+30; p.x = Math.random()*canvas.width; }
+  });
+  requestAnimationFrame(draw);
+})();
+
+// Intro
+function startProposal(){
+  const intro = document.getElementById('intro');
+  intro.style.opacity = '0';
+  intro.style.transition = 'opacity 1.2s';
+  setTimeout(()=>{ intro.style.display='none'; document.getElementById('mainCard').classList.add('show'); }, 1200);
+}
+
+// No button runs away
+function runAway(){
+  const btn = document.getElementById('noBtn');
+  btn.style.position='fixed';
+  btn.style.transition='left 0.2s,top 0.2s';
+  btn.style.left = Math.random()*(window.innerWidth-160)+'px';
+  btn.style.top  = Math.random()*(window.innerHeight-60)+'px';
+  btn.style.zIndex = 50;
+}
+
+// Yes
+function sayYes(){
+  document.getElementById('yes-screen').classList.add('show');
+  launchFireworks();
+}
+
+// WhatsApp
+function sendWhatsApp(){
+  const msg = encodeURIComponent(
+    '💍✨ DIPAK... MAINE HAAN KEH DIYA! ✨💍\n\n' +
+    'Aapki Wife Ji officially taiyaar hai! 🥰\n\n' +
+    'Aapne jo likha tha woh padh ke aankhein bhar aayi...\n' +
+    'Itna pyaar karte ho mujhse? 🥺💕\n\n' +
+    'Main bhi aapse bahut zyada pyaar karti hoon! ❤️🔥\n\n' +
+    'Ab pakka — hum hamesha saath rahenge! 👫💍\n' +
+    'Is janam mein bhi... aur agli saat janmon mein bhi! ♾️\n\n' +
+    'Aapki Wife Ji — Nurjahan 💖🌸'
+  );
+  window.open('https://wa.me/917250928782?text='+msg, '_blank');
+}
+
+// Fireworks
+function launchFireworks(){
+  const fc = document.getElementById('yesCanvas');
+  fc.width = window.innerWidth; fc.height = window.innerHeight;
+  const fctx = fc.getContext('2d');
+  const fw = [];
+  const colors = ['#ffd700','#ff69b4','#c44dff','#ff1493','#00ffcc','#ff6600'];
+  function spawn(){
+    const x=Math.random()*fc.width, y=Math.random()*fc.height*0.6;
+    const c=colors[Math.floor(Math.random()*colors.length)];
+    for(let i=0;i<55;i++){
+      const a=(Math.PI*2/55)*i, s=2+Math.random()*5;
+      fw.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,alpha:1,color:c,size:2+Math.random()*2.5});
+    }
+  }
+  let t=0;
+  (function anim(){
+    fctx.fillStyle='rgba(10,0,21,0.18)';
+    fctx.fillRect(0,0,fc.width,fc.height);
+    fw.forEach(f=>{
+      fctx.beginPath(); fctx.arc(f.x,f.y,f.size,0,Math.PI*2);
+      fctx.fillStyle=f.color; fctx.globalAlpha=f.alpha; fctx.fill();
+      f.x+=f.vx; f.y+=f.vy; f.vy+=0.06; f.alpha-=0.013;
+    });
+    fctx.globalAlpha=1;
+    for(let i=fw.length-1;i>=0;i--) if(fw[i].alpha<=0) fw.splice(i,1);
+    if(++t%50===0) spawn();
+    requestAnimationFrame(anim);
+  })();
+  spawn(); spawn();
+}
+</script>
+</body>
+</html>
